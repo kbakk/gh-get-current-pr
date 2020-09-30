@@ -29,6 +29,10 @@ async function main() {
 
     let pr = result.data.length > 0 && result.data[0];
 
+    if (!pr && context.eventName === "pull_request"){
+        pr = context.payload.pull_request
+    }
+
     if (filterOutClosed === true) {
         pr = pr.state === 'open' && pr
     }
